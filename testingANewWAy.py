@@ -34,7 +34,7 @@ while True:
 						try:
 							passageTyped += nameDict[i+32]
 						except KeyError:
-							pass
+							passageTyped += nameDict[i]
 							
 					print(passageTyped)
 					stateDict[char] = 0
