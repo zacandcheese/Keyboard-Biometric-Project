@@ -1,5 +1,5 @@
 import win32api
-
+import win32con
 #-32768 is the value of a keypress according to win32api.GetAsyncKeyState(ord(char))
 A = -32768;
 B = -32768;
@@ -31,7 +31,7 @@ SPACE = -32768;
 BACKSPACE = -32768;
 
 def setKey(char,value):
-	global A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, SPACE, BACKSPACE
+	global A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, SPACE, BACKSPACE, PERIOD
 	
 	if(char == 'A'):
 		A = value;
@@ -91,6 +91,7 @@ def setKey(char,value):
 		BACKSPACE =value;
 		
 def key(char,key):
+
 	if(win32api.GetAsyncKeyState(ord(char))==key):
 		if(key==-32768):
 			print(char+"-On");
@@ -99,7 +100,6 @@ def key(char,key):
 		else:
 			print(char+"-Off");
 			setKey(char,-32768);
-		
 while(True):
 	key('A',A)
 	key('B',B)
@@ -129,3 +129,4 @@ while(True):
 	key('Z',Z)
 	key(' ',SPACE)
 	key('\x08',BACKSPACE)
+
