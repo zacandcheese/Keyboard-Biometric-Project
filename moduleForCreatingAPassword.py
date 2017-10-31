@@ -22,6 +22,7 @@ def Create(String, length):
 			if(paragraph[i] == ' '):
 				counter+=1
 			i+=1;
+		book.close()
 		return(passage)
 	elif(Sting == "Random Words"):
 		pass
