@@ -33,7 +33,8 @@ counter 		= 5
 hand 			= 6
 
 person = input('Enter your name: ')
-filename = person+".txt"
+filename = "library/"+person+".txt"
+
 try:
 	dataMatrix = np.loadtxt(filename, delimiter=",", unpack=False)#OPEN IF EXISTS
 except FileNotFoundError:

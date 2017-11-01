@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import glob, os
 from itertools import cycle
 
-os.chdir("/Users/zacan/OneDrive/Documents/GitHub/Keyboard-Biometric-Testing")
+os.chdir("/Users/zacan/OneDrive/Documents/GitHub/Keyboard-Biometric-Testing/library")
 
 listOfTxtFiles = []
 for file in glob.glob("*.txt"):
