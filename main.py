@@ -23,14 +23,13 @@ xDict = listOfAllKeys.xDict
 yDict = listOfAllKeys.yDict
 keyToIndex = moduleForCreatingAMatrix.newDict
 
-"""[letter(in the keyToIndex), startPress, AVGPressTime, startFlight, AVGFlightTime, counter, hand(0-1)"""
+"""[letter(in the keyToIndex), startPress, AVGPressTime,  AVGFlightTime, counter, hand(0-1)"""
 #dataMatrix info
 startPress 		= 1
 AVGPressTime	= 2
-startFlight 	= 3
-AVGFlightTime 	= 4
-counter 		= 5
-hand 			= 6
+AVGFlightTime 	= 3
+counter 		= 4
+hand 			= 5
 
 person = input('Enter your name: ')
 filename = "library/"+person+".txt"
@@ -40,9 +39,10 @@ try:
 except FileNotFoundError:
 	dataMatrix = moduleForCreatingAMatrix.matrix #MAKE A NEW ONE IF NOT
 	
-flightTime = 0;
+
 passageTyped = ""
-passage = moduleForCreatingAPassword.Create("Story", 20)#20 is the length of the story
+passage = moduleForCreatingAPassword.Create("All Letters", 40)#20 is the length of the story
+startFlight = 0 #INTIALIZING
 print(passage)
 
 end = True
@@ -50,6 +50,7 @@ while end:
 	for i in range(0,256):
 		try:
 			if(win32api.GetAsyncKeyState(i) == stateDict[nameDict[i]]):
+				
 				char = nameDict[i]
 				dM = dataMatrix[int(keyToIndex[char])]
 				if char == "SHIFT": #DO NOT DO ANYTHING
@@ -58,13 +59,16 @@ while end:
 					"""RELEASED"""				
 				if stateDict[char] == 0:
 					dM[AVGPressTime] = (dM[AVGPressTime]*dM[counter]+(time.time()-dM[startPress]))/(dM[counter]+1)
-					dM[startFlight] = time.time()
+					startFlight = time.time()
 					stateDict[char] = -32768 #CHANGE STATES
 				
 					"""PRESSED"""
 				else:
-					if dM[startFlight]>0:#MEANS STARTED CODE
-						dM[AVGFlightTime] = (dM[AVGFlightTime]*dM[counter]+(time.time()-dM[startFlight]))/(dM[counter]+1)
+					if startFlight>0:#MEANS STARTED CODE
+						dM[AVGFlightTime] = (dM[AVGFlightTime]*dM[counter]+(time.time()-startFlight))/(dM[counter]+1)
+					else:
+						startFlight = time.time()
+						
 					dM[startPress] = time.time()
 					dM[counter] += 1#ADD ONE TO THE COUNTER BECAUSE IT WAS PRESSED
 					

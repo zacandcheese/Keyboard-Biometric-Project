@@ -18,8 +18,15 @@ for file in glob.glob("*.txt"):
 lines = ["-","--","-.",":"]
 linecycler = cycle(lines)
 for i in range(len(listOfTxtFiles)):
-	plt.figure(1)
+	plt.figure("PRESS TIME")
 	array = np.loadtxt(listOfTxtFiles[i], delimiter=",", unpack=True)
-	plt.plot(array[0], array[2], next(linecycler), label = listOfTxtFiles[i])# array[0], array[4], 'ro' USE FOR AVG FLIGHT TIME
+	plt.plot(array[0][3:], array[2][3:], next(linecycler), label = listOfTxtFiles[i])
+plt.legend()
+plt.show()
+
+for i in range(len(listOfTxtFiles)):
+	plt.figure("FLIGHT TIME")
+	array = np.loadtxt(listOfTxtFiles[i], delimiter=",", unpack=True)
+	plt.plot(array[0][3:], array[3][3:], lines[0], label = listOfTxtFiles[i])
 plt.legend()
 plt.show()

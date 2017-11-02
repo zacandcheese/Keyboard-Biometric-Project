@@ -36,7 +36,8 @@ def Create(String, length):
 			
 		book.close()
 		return(passage)
-		
+	elif (String == "All Letters"):
+		return("The quick brown fox jumps over the lazy dog")
 	elif(Sting == "Random Words"):
 		pass#FIXME
 		

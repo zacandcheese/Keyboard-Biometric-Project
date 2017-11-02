@@ -27,7 +27,7 @@ while(counter<=72):
 
 """matrix is the thing which will hold the data"""
 #[char, startPress,AVGPressTime,startFlight, AVGFlightTime, counter, hand(0,1)]
-matrix = np.zeros(shape=(72,6))
+matrix = np.zeros(shape=(72,5))
 for i in range(72):
 	matrix[i][0] = i
 	#FIXME INCLUDE SOMETHING FOR HANDEDNESS
