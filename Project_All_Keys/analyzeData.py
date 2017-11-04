@@ -6,7 +6,7 @@ import moduleForCreatingAMatrix
 from scipy import stats
 
 print(moduleForCreatingAMatrix.newDict)
-os.chdir("/Users/zacan/OneDrive/Documents/GitHub/Keyboard-Biometric-Testing/library")
+os.chdir("/Users/zacan/OneDrive/Documents/GitHub/Keyboard-Biometric-Testing/Project_All_Keys/library")
 
 listOfTxtFiles = []
 for file in glob.glob("*.txt"):
