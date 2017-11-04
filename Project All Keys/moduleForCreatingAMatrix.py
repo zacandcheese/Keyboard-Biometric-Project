@@ -14,7 +14,7 @@ nameDict = listOfAllKeys.nameDict
 newDict = {}
 i = 0
 counter = 0;
-while(counter<=72):
+while(counter<len(nameDict)):
 	for j in range(i,256):
 		try:
 			newDict[nameDict[j]] = counter
@@ -23,7 +23,6 @@ while(counter<=72):
 			None
 	i=j+1
 	counter+=1
-
 
 """matrix is the thing which will hold the data"""
 #[char, startPress,AVGPressTime,startFlight, AVGFlightTime, counter, hand(0,1)]

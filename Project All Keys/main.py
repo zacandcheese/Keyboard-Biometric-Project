@@ -41,7 +41,7 @@ except FileNotFoundError:
 	
 
 passageTyped = ""
-passage = moduleForCreatingAPassword.Create("All Letters", 40)#20 is the length of the story
+passage = moduleForCreatingAPassword.Create("Story", 60)#60 is the length of the story
 startFlight = 0 #INTIALIZING
 print(passage)
 
@@ -52,20 +52,51 @@ while end:
 			if(win32api.GetAsyncKeyState(i) == stateDict[nameDict[i]]):
 				
 				char = nameDict[i]
-				dM = dataMatrix[int(keyToIndex[char])]
-				if char == "SHIFT": #DO NOT DO ANYTHING
-					pass 
+				char2 = char
 				
+				"""DETERMINE WHAT CHAR IT IS"""
+				
+				if i<=57 and i>=48:#NUMBERS
+					if stateDict["SHIFT"] == 0:
+						char2 = nameDict[i-16]
+					else:pass						
+				elif (char == "SHIFT") or (stateDict["SHIFT"] == 0) or (char == '.'):#SHIFT KEY, PERIOD, or UPPERCASE
+					pass
+				else:#LOWERCASE
+					try:
+						char2 = nameDict[i+32]
+					except KeyError:
+						pass
+						
+				dM = dataMatrix[int(keyToIndex[char2])]
+				
+				if char == "SHIFT" or char == "DELETE": #DO NOT ADD TO STRING
+					if stateDict[char] == 0:
+						stateDict[char] = -32768 #CHANGE STATES
+					else: 
+						stateDict[char] = 0 #CHANGES STATE
+						os.system('cls')#CLEARS THE COMMAND PROMPT
+						if char == "DELETE":#DELETE
+							passageTyped = passageTyped[:-1]
+						print(passage)
+						print(passageTyped)
+						dM[counter] += 1
+						
 					"""RELEASED"""				
-				if stateDict[char] == 0:
+				elif stateDict[char] == 0:
 					dM[AVGPressTime] = (dM[AVGPressTime]*dM[counter]+(time.time()-dM[startPress]))/(dM[counter]+1)
-					startFlight = time.time()
+					#if dM[AVGPressTime]>.3:
+					#	dM[AVGPressTime] = (dM[AVGPressTime]*(dM[counter]+1)-(time.time()-dM[startPress]))/dM[counter]
+					#	dM[counter] -= 1
+					#startFlight = time.time() FIXME
 					stateDict[char] = -32768 #CHANGE STATES
 				
 					"""PRESSED"""
-				else:
+				else:	
+					passageTyped += char2
 					if startFlight>0:#MEANS STARTED CODE
 						dM[AVGFlightTime] = (dM[AVGFlightTime]*dM[counter]+(time.time()-startFlight))/(dM[counter]+1)
+						startFlight = time.time()#FIXME
 					else:
 						startFlight = time.time()
 						
@@ -76,27 +107,7 @@ while end:
 					
 					if (char == '\n')and (dM[counter]>1):#IF ENTER IS PRESSED BREAK THE CODE
 						end = False
-						
-					if char == "DELETE":#DELETE
-						passageTyped = passageTyped[:-1]
-						
-					elif i<=57 and i>=48:#NUMBERS
-						if stateDict["SHIFT"] == 0:
-							passageTyped += nameDict[i-16]
-						else:passageTyped += char
-						
-					elif char == "SHIFT":#SHIFT
-						pass
-					elif stateDict["SHIFT"] == 0:#UPPERCASE
-						passageTyped += char
-					elif char == '.':
-						passageTyped+='.'
-					else:#lowercase
-						try:
-							passageTyped += nameDict[i+32]
-						except KeyError:
-							passageTyped += nameDict[i]
-							
+		
 					print(passage)
 					print(passageTyped)
 					stateDict[char] = 0 #CHANGES STATE

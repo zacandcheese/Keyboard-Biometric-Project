@@ -6,12 +6,25 @@ Program Description: This code can create a passage
 with random letters, random words, or words from a story
 """
 import random
-
+import moduleForCreatingAMatrix
 def Create(String, length):
 	passage = ""
 	
 	if(String == "Random Letters"):
-		pass#FIXME
+		import listOfAllKeys
+		nameDict = listOfAllKeys.nameDict
+		i = 17# To avoid including DELETE, \n, ENTER
+		counter = 0;
+		while(counter<len(nameDict)):
+			for j in range(i,256):
+				try:
+					passage+=(nameDict[j])
+					break
+				except KeyError:
+					None
+			i=j+1
+			counter+=1
+		return(passage+passage)
 		
 	elif(String == "Story"):
 		"""Opens a book and chooses a paragraph"""
@@ -38,7 +51,6 @@ def Create(String, length):
 		return(passage)
 	elif (String == "All Letters"):
 		return("The quick brown fox jumps over the lazy dog")
-	elif(Sting == "Random Words"):
+	elif(String == "Random Words"):
 		pass#FIXME
-		
-		
+				
