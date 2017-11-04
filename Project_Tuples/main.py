@@ -7,50 +7,49 @@ Program Description: This code can record the
 Press Time and Flight Time of a tuple as a user
 types a passage and it saves a matrix to a file. 
 """
+#TO-DO
+"""
+PRESS TIME
+STORING DATA
+MAKING A SIGNATURE
+"""
+
+"""PYTHON/SITE PACKAGES"""
 import win32api
 import os
 import time
 import numpy as np
 
+"""FOLDER FILES"""
 import listOfAllKeys
 import determineChar
 #import passageMaker
+
+"""FOLDER IMPORTS"""
 #passage = passageMaker.create(something)
 passage = "The quick brown fox jumps over the lazy dog talking back"
-
 #tupleList = passageMaker.list()
+#NOTE TUPLES MUST BE SAME SIZE AND NOT IN THE SAME WORD
 tupleList = ["th","he","ck"]
-
-print("First letter: " +tupleList[0][-1])
-
-timingList = [[] for i in range(len(tupleList))]
-pressList = [[] for i in range(len(tupleList))]
-#list[0].append(1)
-#print(list)
-
-"""
-print passage
-see what key i pressed
-add it 
-see if that key is the one i want:
-	start timer
-else pass
-see if that is the last letter expected
-
-else pass
-"""
 stateDict = listOfAllKeys.stateDict
 nameDict = listOfAllKeys.nameDict
-startFlight = 0 #INTIALIZING
-passageTyped = ""
-print(passage)
+
+"""LOCAL VARIABLES"""
+
+timingList = [[] for i in range(len(tupleList))]#FOR TIME IT TAKES TO WRITE A WORD
+pressList = [[0] for i in range(len(tupleList))]#FOR PRESS TIME [TIME, AVGPRESSTIME, COUNTER] EACH FIRST LETTER
+
 
 tuplePresent = False
 tupleCounter = 0
 tupleTime = 0
 
+passageTyped = ""
+
 end = True
-enterCounter = 0
+enterCounter = 1 #CHANGE TO 0 WHEN INCLUDING A NAMING FEATURE
+
+print(passage)
 while end:
 	for i in range(0,256):
 		try:
@@ -78,6 +77,7 @@ while end:
 				
 					"""PRESSED"""
 				else:
+					
 					passageTyped += char2
 					os.system('cls')#CLEARS THE COMMAND PROMPT
 					
@@ -97,7 +97,6 @@ while end:
 						if(passageTyped[-1] == tuple[tupleCounter]):
 							"""DETERMINE IF IT IS DONE"""
 							if tupleCounter == len(tupleList[0])-1:
-								
 								word = passageTyped[len(passageTyped)-(tupleCounter+1):]
 								wordIndex = tupleList.index(word)
 								timingList[wordIndex].append(time.time()-tupleTime)
@@ -108,18 +107,19 @@ while end:
 						else:
 							tuplePresent = False
 							tupleCounter = 0
+							
+					"""DETERMINE IF IT IS A START OF A TUPLE"""		
 					if not tuplePresent:
-						"""DETERMINE IF IT IS A START OF A TUPLE"""
 						for tuple in tupleList:
 							if passageTyped[-1] == tuple[0]:
 								tuplePresent = True
 								tupleCounter += 1
 								tupleTime = time.time()
 								break
-					
 		except KeyError:
 			pass
 			
-print(timingList)			
+print("THIS IS THE TIMINGLIST", timingList)
+		
 getMessage = input()#PREVENT ERRORS
 			
