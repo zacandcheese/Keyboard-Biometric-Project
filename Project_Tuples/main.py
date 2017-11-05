@@ -7,119 +7,35 @@ Program Description: This code can record the
 Press Time and Flight Time of a tuple as a user
 types a passage and it saves a matrix to a file. 
 """
-#TO-DO
-"""
-PRESS TIME
-STORING DATA
-MAKING A SIGNATURE
-"""
+__version__ = '1.0'
+__author__ = 'Zachary Nowak'
+"""STANDARD LIBRARY IMPORTS"""
+import json
 
-"""PYTHON/SITE PACKAGES"""
-import win32api
-import os
-import time
-import numpy as np
-
-"""FOLDER FILES"""
-import listOfAllKeys
-import determineChar
+"""LOCAL LIBRARY IMPORTS"""
+import moduleForFindingTuplesTime as FTT
+import moduleForRecordingTimelines as RT
+import moduleForFindingPressTimes as FPT
 #import passageMaker
 
 """FOLDER IMPORTS"""
 #passage = passageMaker.create(something)
-passage = "The quick brown fox jumps over the lazy dog talking back"
+#passage = "The quick brown fox jumps over the lazy dog talking back"
+passage = "the trophy other with both graph phone phat three philly hath that weather pho "
+
 #tupleList = passageMaker.list()
-#NOTE TUPLES MUST BE SAME SIZE AND NOT IN THE SAME WORD
-tupleList = ["th","he","ck"]
-stateDict = listOfAllKeys.stateDict
-nameDict = listOfAllKeys.nameDict
+#NOTE TUPLES MUST BE SAME SIZE!!!
+tupleList = ["th", "ph"]
 
-"""LOCAL VARIABLES"""
+"""TYPE THE PASSAGE AND RECORD THE TIME LINE"""
+pressTimeLine,pressCharTimeLine,releaseTimeLine,releaseCharTimeLine = RT.start_recording(passage)
 
-timingList = [[] for i in range(len(tupleList))]#FOR TIME IT TAKES TO WRITE A WORD
-pressList = [[0] for i in range(len(tupleList))]#FOR PRESS TIME [TIME, AVGPRESSTIME, COUNTER] EACH FIRST LETTER
+"""COLLECT DATA FROM THE TIMELINE"""
+dataDict = {}
+dataDict = FTT.create_dict(tupleList, pressCharTimeLine,pressTimeLine,dataDict)	
+dataDict = FPT.create_dict(pressCharTimeLine,pressTimeLine,releaseCharTimeLine,releaseTimeLine,dataDict)
 
-
-tuplePresent = False
-tupleCounter = 0
-tupleTime = 0
-
-passageTyped = ""
-
-end = True
-enterCounter = 1 #CHANGE TO 0 WHEN INCLUDING A NAMING FEATURE
-
-print(passage)
-while end:
-	for i in range(0,256):
-		try:
-			if(win32api.GetAsyncKeyState(i) == stateDict[nameDict[i]]):
-				"""DETERMINE WHAT CHAR IT IS"""
-				char = nameDict[i]
-				char2 = determineChar.determineChar(i,stateDict,nameDict)
-						
-				"""ADD TO THE STRING"""
-				if char2 == "SHIFT" or char2 == "DELETE": #DO NOT ADD TO STRING
-					if stateDict[char] == 0:
-						stateDict[char] = -32768 #CHANGE STATES
-					else: 
-						stateDict[char] = 0 #CHANGES STATE
-						os.system('cls')#CLEARS THE COMMAND PROMPT
-						if char == "DELETE":#DELETE
-							passageTyped = passageTyped[:-1]
-						print(passage)
-						print(passageTyped)
-						
-						
-					"""RELEASED"""				
-				elif stateDict[char] == 0:
-					stateDict[char] = -32768 #CHANGE STATES
-				
-					"""PRESSED"""
-				else:
-					
-					passageTyped += char2
-					os.system('cls')#CLEARS THE COMMAND PROMPT
-					
-					if (char == '\n'):
-						if(enterCounter>0):#IF ENTER IS PRESSED BREAK THE CODE
-							end = False
-						else:
-							enterCounter+=1
-		
-					print(passage)
-					print(passageTyped)
-					
-					stateDict[char] = 0 #CHANGES STATE
-					"""TUPLE STUFF"""
-					if tuplePresent:
-						"""DETERMINE IF IT IS STILL GOOD"""
-						if(passageTyped[-1] == tuple[tupleCounter]):
-							"""DETERMINE IF IT IS DONE"""
-							if tupleCounter == len(tupleList[0])-1:
-								word = passageTyped[len(passageTyped)-(tupleCounter+1):]
-								wordIndex = tupleList.index(word)
-								timingList[wordIndex].append(time.time()-tupleTime)
-								tuplePresent = False
-								tupleCounter = 0
-							else:
-								tupleCounter += 1
-						else:
-							tuplePresent = False
-							tupleCounter = 0
-							
-					"""DETERMINE IF IT IS A START OF A TUPLE"""		
-					if not tuplePresent:
-						for tuple in tupleList:
-							if passageTyped[-1] == tuple[0]:
-								tuplePresent = True
-								tupleCounter += 1
-								tupleTime = time.time()
-								break
-		except KeyError:
-			pass
-			
-print("THIS IS THE TIMINGLIST", timingList)
-		
-getMessage = input()#PREVENT ERRORS
-			
+"""STORE DATA TO A FILE WITH THAT USER'S NAME"""
+person = input('Enter your name: ')
+filename = "library/" + person + ".txt"
+json.dump(dataDict, open(filename, 'w'))
