@@ -16,21 +16,16 @@ import json
 import moduleForFindingTuplesTime as FTT
 import moduleForRecordingTimelines as RT
 import moduleForFindingPressTimes as FPT
-import createPassage
+#import passageMaker
 
 """FOLDER IMPORTS"""
-maxLengthOfPassage = 150 #Too Long
-frequency = 6 #Number the tuple occurs
-tupleLength = 2 #Number the length of the tuple
-infile="1984Chapter1.txt"
-
-passage = createPassage.BuildSentences(infile,maxLengthOfPassage,frequency,tupleLength)
+#passage = passageMaker.create(something)
 #passage = "The quick brown fox jumps over the lazy dog talking back"
-#passage = "the trophy other with both graph phone phat three philly hath that weather pho"
+passage = "the trophy other with both graph phone phat three philly hath that weather pho "
 
 #tupleList = passageMaker.list()
 #NOTE TUPLES MUST BE SAME SIZE!!!
-tupleList = createPassage.FindXTuples(passage, 3, 2)#(input string, frequency occurs, length of tuple)
+tupleList = ["th", "ph"]
 
 """TYPE THE PASSAGE AND RECORD THE TIME LINE"""
 pressTimeLine,pressCharTimeLine,releaseTimeLine,releaseCharTimeLine = RT.start_recording(passage)
@@ -42,6 +37,5 @@ dataDict = FPT.create_dict(pressCharTimeLine,pressTimeLine,releaseCharTimeLine,r
 
 """STORE DATA TO A FILE WITH THAT USER'S NAME"""
 person = input('Enter your name: ')
-#filename = "library/" + person + ".txt" MAIN computer
-filename = "library/" + person + ".txt"#GREEN computer
+filename = "library/" + person + ".txt"
 json.dump(dataDict, open(filename, 'w'))

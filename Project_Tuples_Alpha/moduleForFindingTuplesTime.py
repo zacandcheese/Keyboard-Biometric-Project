@@ -1,7 +1,7 @@
 __version__ = '1.0'
 __author__ = 'Zachary Nowak'
 """STANDARD LIBRARY IMPORTS"""
-from statistics import median#FIXME
+from statistics import *
 
 def create_dict(tupleList,pressCharTimeLine,pressTimeLine,dataDict):
 	keyHistory = ""
@@ -23,8 +23,8 @@ def create_dict(tupleList,pressCharTimeLine,pressTimeLine,dataDict):
 	"""ASSIGN THE TUPLE WITH IT'S MEDIAN TOTAL PRESS TIME"""
 	i = 0
 	for tuple in timingList:
-		print('The median for ' +tupleList[i]+' : ', median(tuple))
-		#print("The mean is: ", harmonic_mean(tuple))FIXME
+		print("The median is: ", median(tuple))
+		print("The mean is: ", harmonic_mean(tuple))
 		dataDict[tupleList[i]] = median(tuple)
 		i += 1
 	return dataDict

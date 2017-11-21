@@ -52,9 +52,5 @@ def start_recording(passage):
 			except KeyError:
 				pass
 				
-	try:
-		getMessage = input()#PREVENTS ERRORS
-	except SyntaxError or NameError:
-		pass
-		
+	getMessage = input()#PREVENTS ERRORS
 	return(pressTimeLine, pressCharTimeLine, releaseTimeLine, releaseCharTimeLine)
