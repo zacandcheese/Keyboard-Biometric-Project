@@ -1,11 +1,16 @@
 #cmd /K "$(FULL_CURRENT_PATH)"
+
+#cd ~/Documents/GitHub/Keyboard-Biometric-Project/Project_Tuples
+#sudo python -m pip install statistics
+#python analyzeData.py
+
 """
-Author: Zachary Nowak 
+Author: Zachary Nowak
 Date:11/3/2017
 
-Program Description: This code can record the 
+Program Description: This code can record the
 Press Time and Flight Time of a tuple as a user
-types a passage and it saves a matrix to a file. 
+types a passage and it saves a matrix to a file.
 """
 __version__ = '1.0'
 __author__ = 'Zachary Nowak'
@@ -37,7 +42,7 @@ pressTimeLine,pressCharTimeLine,releaseTimeLine,releaseCharTimeLine = RT.start_r
 
 """COLLECT DATA FROM THE TIMELINE"""
 dataDict = {}
-dataDict = FTT.create_dict(tupleList, pressCharTimeLine,pressTimeLine,dataDict)	
+dataDict = FTT.create_dict(tupleList, pressCharTimeLine,pressTimeLine,dataDict)
 dataDict = FPT.create_dict(pressCharTimeLine,pressTimeLine,releaseCharTimeLine,releaseTimeLine,dataDict)
 
 """STORE DATA TO A FILE WITH THAT USER'S NAME"""

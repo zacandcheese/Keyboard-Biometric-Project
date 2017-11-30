@@ -6,7 +6,7 @@ import os
 import json
 import statistics
 #os.chdir("/Users/zacan/OneDrive/Documents/GitHub/Keyboard-Biometric-Testing/Project_Tuples/library")#Change zacan with Haley for GREEN
-os.chdir("library2")#Change Haley with zacan for MAIN
+os.chdir("library")#Change Haley with zacan for MAIN
 
 listOfTxtFiles = []
 for file in glob.glob("*.txt"):
@@ -25,11 +25,11 @@ for key in keys:
 		for file in listOfTxtFiles:
 			dict = json.load(open(file,'r'))
 			listForKey.append(dict[key])
-			
+
 		listForKeyForEachPerson = []
 		for i in range(int((len(listForKey))/2)):
 			listForKeyForEachPerson.append(statistics.variance(listForKey[i*2:i*2+2]))
-	
+
 		consistencyDict[key] = (statistics.mean(listForKeyForEachPerson)/statistics.mean(listForKey))*100
 		varianceDict[key] = (statistics.variance(listForKey)/statistics.mean(listForKey))*100
 
@@ -50,7 +50,7 @@ for key in keys:
 	#sumDict[key] = len(consistencyList)-consistencyList.index(key)+ varianceList.index(key)
 	sumDict[key] = varianceDict[key]/consistencyDict[key]
 print("\n",sumDict)
-print("\n", sorted(sumDict, key = sumDict.get))	
+print("\n", sorted(sumDict, key = sumDict.get))
 
 """
 orderedList = [];
@@ -58,7 +58,6 @@ for num in sorted(consistencyDict.values()):
 	for key, value in consistencyDict.items():
 		if num == value:
 			orderedList.append(key)
-			
+
 print(orderedList)
 """
-
