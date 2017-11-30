@@ -1,2 +1,5 @@
 d c r i t g e a 
+j q v x z
+
+multiple instance of each letter at different spots in the word. And it needs to fit the requiremnent in createPassage
 david knew james had unique vehicles, which he examined while listening to jazz. 
