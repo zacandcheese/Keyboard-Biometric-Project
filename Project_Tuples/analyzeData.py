@@ -6,7 +6,7 @@ import os
 import json
 import statistics
 #os.chdir("/Users/zacan/OneDrive/Documents/GitHub/Keyboard-Biometric-Testing/Project_Tuples/library")#Change zacan with Haley for GREEN
-os.chdir("library")#Change Haley with zacan for MAIN
+os.chdir("library2")#Change Haley with zacan for MAIN
 
 listOfTxtFiles = []
 for file in glob.glob("*.txt"):
@@ -30,12 +30,14 @@ for key in keys:
 		for i in range(int((len(listForKey))/2)):
 			listForKeyForEachPerson.append(statistics.variance(listForKey[i*2:i*2+2]))
 	
-		consistencyDict[key] = statistics.mean(listForKeyForEachPerson)
-		varianceDict[key] = statistics.variance(listForKey)
+		consistencyDict[key] = (statistics.mean(listForKeyForEachPerson)/statistics.mean(listForKey))*100
+		varianceDict[key] = (statistics.variance(listForKey)/statistics.mean(listForKey))*100
 
 #SORTED LOW TO HIGH
 #print(sorted(consistencyDict, key=consistencyDict.get))
-#print("\n")
+print("\n", consistencyDict)
+print("\n")
+print(varianceDict)
 #print(sorted(varianceDict, key=varianceDict.get))
 consistencyList = sorted(consistencyDict, key=consistencyDict.get)
 varianceList = sorted(varianceDict, key=varianceDict.get)
@@ -45,7 +47,8 @@ varianceList = sorted(varianceDict, key=varianceDict.get)
 keys = list(consistencyDict.keys())
 sumDict = {}
 for key in keys:
-	sumDict[key] = len(consistencyList)-consistencyList.index(key)+ varianceList.index(key)
+	#sumDict[key] = len(consistencyList)-consistencyList.index(key)+ varianceList.index(key)
+	sumDict[key] = varianceDict[key]/consistencyDict[key]
 print("\n",sumDict)
 print("\n", sorted(sumDict, key = sumDict.get))	
 

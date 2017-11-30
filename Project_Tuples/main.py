@@ -43,5 +43,5 @@ dataDict = FPT.create_dict(pressCharTimeLine,pressTimeLine,releaseCharTimeLine,r
 """STORE DATA TO A FILE WITH THAT USER'S NAME"""
 person = input('Enter your name: ')
 #filename = "library/" + person + ".txt" MAIN computer
-filename = "library/" + person + ".txt"#GREEN computer
+filename = "library2/" + person + ".txt"#GREEN computer
 json.dump(dataDict, open(filename, 'w'))
