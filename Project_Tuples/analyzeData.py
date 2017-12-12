@@ -30,8 +30,8 @@ for key in keys:
 		for i in range(int((len(listForKey))/2)):
 			listForKeyForEachPerson.append(statistics.variance(listForKey[i*2:i*2+2]))
 
-		consistencyDict[key] = (statistics.mean(listForKeyForEachPerson)/statistics.mean(listForKey))*100
-		varianceDict[key] = (statistics.variance(listForKey)/statistics.mean(listForKey))*100
+		consistencyDict[key] = (statistics.mean(listForKeyForEachPerson)/statistics.mean(listForKey))
+		varianceDict[key] = (statistics.variance(listForKey)/statistics.mean(listForKey))
 
 #SORTED LOW TO HIGH
 #print(sorted(consistencyDict, key=consistencyDict.get))
