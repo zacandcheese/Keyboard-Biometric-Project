@@ -21,6 +21,7 @@ import json
 import moduleForFindingTuplesTime as FTT
 import moduleForRecordingTimelines as RT
 import moduleForFindingPressTimes as FPT
+import moduleForSeeingConsistency as SC
 import createPassage
 
 """FOLDER IMPORTS"""
@@ -40,6 +41,9 @@ tupleList = createPassage.FindXTuples(passage, 3, 2)#(input string, frequency oc
 """TYPE THE PASSAGE AND RECORD THE TIME LINE"""
 pressTimeLine,pressCharTimeLine,releaseTimeLine,releaseCharTimeLine = RT.start_recording(passage)
 
+"""SEE CONSISTENCY"""
+SC.seeConsistency(pressCharTimeLine,pressTimeLine,releaseCharTimeLine, releaseTimeLine)
+
 """COLLECT DATA FROM THE TIMELINE"""
 dataDict = {}
 dataDict = FTT.create_dict(tupleList, pressCharTimeLine,pressTimeLine,dataDict)
@@ -48,5 +52,5 @@ dataDict = FPT.create_dict(pressCharTimeLine,pressTimeLine,releaseCharTimeLine,r
 """STORE DATA TO A FILE WITH THAT USER'S NAME"""
 person = input('Enter your name: ')
 #filename = "library/" + person + ".txt" MAIN computer
-filename = "library2/" + person + ".txt"#GREEN computer
+filename = "library/Attempts/" + person + ".txt"#GREEN computer
 json.dump(dataDict, open(filename, 'w'))

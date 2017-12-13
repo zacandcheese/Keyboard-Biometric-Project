@@ -25,19 +25,19 @@ for key in keys:
 		for file in listOfTxtFiles:
 			dict = json.load(open(file,'r'))
 			listForKey.append(dict[key])
-
+			
 		listForKeyForEachPerson = []
 		for i in range(int((len(listForKey))/2)):
 			listForKeyForEachPerson.append(statistics.variance(listForKey[i*2:i*2+2]))
 
-		consistencyDict[key] = (statistics.mean(listForKeyForEachPerson)/statistics.mean(listForKey))*100
-		varianceDict[key] = (statistics.variance(listForKey)/statistics.mean(listForKey))*100
+		consistencyDict[key] = (statistics.mean(listForKeyForEachPerson)/statistics.mean(listForKey))
+		varianceDict[key] = (statistics.variance(listForKey)/statistics.mean(listForKey))
 
 #SORTED LOW TO HIGH
 #print(sorted(consistencyDict, key=consistencyDict.get))
-print("\n", consistencyDict)
-print("\n")
-print(varianceDict)
+#print("\n", consistencyDict)
+#print("\n")
+#print(varianceDict)
 #print(sorted(varianceDict, key=varianceDict.get))
 consistencyList = sorted(consistencyDict, key=consistencyDict.get)
 varianceList = sorted(varianceDict, key=varianceDict.get)
@@ -49,8 +49,29 @@ sumDict = {}
 for key in keys:
 	#sumDict[key] = len(consistencyList)-consistencyList.index(key)+ varianceList.index(key)
 	sumDict[key] = varianceDict[key]/consistencyDict[key]
-print("\n",sumDict)
-print("\n", sorted(sumDict, key = sumDict.get))
+
+#print("\n",sumDict)
+#print("\n", sorted(sumDict, key = sumDict.get))
+
+def getAvgForPerson(fileName, keys):
+	num = listOfTxtFiles.index(fileName)
+	if(num%2==0):
+		secondFile = listOfTxtFiles[num+1]
+	else:
+		secondFile = listOfTxtFiles[num-1]
+		
+	listForKey = []
+	dict1 = json.load(open(fileName,'r'))
+	dict2 = json.load(open(secondFile,'r'))
+	
+	for key in keys:
+		if not (key == '@' or key == 'V'):
+			listForKey.append((abs(dict1[key]-dict2[key]))/(2*(dict1[key]+dict2[key])))
+	return(statistics.mean(listForKey))
+	
+
+#print(getAvgForPerson('4.1.txt',keys))	
+
 
 """
 orderedList = [];
