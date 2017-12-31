@@ -35,9 +35,14 @@ passage = createPassage.BuildSentences(infile,maxLengthOfPassage,frequency,tuple
 #passage = "the quick brown fox jumps over the lazy dog talking back"
 #passage = "the trophy other with both graph phone phat three philly hath that weather pho"
 
+#For Testing in differentparts of a sentence
+word = open("Blank TEXT.txt","r")
+sentence = word.readlines()
+passage = sentence[1]
+
 #tupleList = passageMaker.list()
 #NOTE TUPLES MUST BE SAME SIZE!!!
-tupleList = createPassage.FindXTuples(passage, 3, 2)#(input string, frequency occurs, length of tuple)
+tupleList = createPassage.FindXTuples(passage, 9, 2)#(input string, frequency occurs, length of tuple)
 
 """TYPE THE PASSAGE AND RECORD THE TIME LINE"""
 pressTimeLine,pressCharTimeLine,releaseTimeLine,releaseCharTimeLine = RT.start_recording(passage)
@@ -53,5 +58,5 @@ dataDict = FPT.create_dict(pressCharTimeLine,pressTimeLine,releaseCharTimeLine,r
 """STORE DATA TO A FILE WITH THAT USER'S NAME"""
 person = input('Enter your name: ')
 #filename = "library/" + person + ".txt" MAIN computer
-filename = "library/WarmUp/" + person + ".txt"#GREEN computer
+filename = "library/Sentence/" + person + ".txt"#GREEN computer
 json.dump(dataDict, open(filename, 'w'))

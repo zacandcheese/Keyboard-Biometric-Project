@@ -61,7 +61,7 @@ def seeConsistency(pressCharTimeLine,pressTimeLine,releaseCharTimeLine, releaseT
 	plt.plot(xList, yList2, label = "mean");	
 	plt.legend()
 	plt.show()
-	person = input('Enter your name: ')
+	#person = input('Enter your name: ')
 	#filename = "library/" + person + ".txt" MAIN computer
-	filename = "library/Consistency/" + person + ".txt"#GREEN computer
-	json.dump(dataDict, open(filename, 'w'))
+	#filename = "library/Consistency/" + person + ".txt"#GREEN computer
+	#json.dump(dataDict, open(filename, 'w'))

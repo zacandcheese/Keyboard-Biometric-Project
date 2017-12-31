@@ -13,32 +13,36 @@ plt.figure("test figure")
 plt.scatter(xValues,yValues)
 plt.show()
 """
+#For Testing in differentparts of a sentence
+word = open("Blank TEXT.txt","r")
+sentence = word.readlines()
+passage = sentence[1]
+
+#passage = "even at the best of times it was seldom working, and at present the electric current was cut off during daylight hours"
 plt.figure("Varience")
-os.chdir("library/Consistency")
+os.chdir("library/Sentence")
 listOfTxtFiles = []
 for file in glob.glob("*.txt"):
 	listOfTxtFiles.append(file)
 print(listOfTxtFiles)
 
-referenceDict = json.load(open(listOfTxtFiles[0],'r'))
+referenceDict = json.load(open(listOfTxtFiles[3],'r'))
 keys = list(referenceDict.keys())
 
-<<<<<<< HEAD
-print referenceDict
-for file in listOfTxtFiles[::2]:#Every Other Terms
-=======
 print(referenceDict)
-for file in listOfTxtFiles[::1]:#Every Other Terms[::2] for others
->>>>>>> 6225905b2cd4f526ed2a2aa2223c3208096c5985
+for file in listOfTxtFiles[0:5:1]:#Every Other Terms[::2] for others
+    print(file)
+    dict = json.load(open(file,'r'))
     xValues = []
     yValues = []
     i = 0
     for key in keys:
-        if not (key == '@' or key == 'V'):
-            dict = json.load(open(file,'r'))
+        if not (key == '@'):
             xValues.append(i)
             yValues.append(dict[key])
+            print(i, "is", key, "and the value is", dict[key])
             i = i+1
+            
     plt.plot(xValues,yValues,label = file)
 
 plt.legend()
