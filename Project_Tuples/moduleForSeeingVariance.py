@@ -24,7 +24,7 @@ referenceDict = json.load(open(listOfTxtFiles[0],'r'))
 keys = list(referenceDict.keys())
 
 print referenceDict
-for file in listOfTxtFiles[8:10]:#Every Other Terms
+for file in listOfTxtFiles[::2]:#Every Other Terms
     xValues = []
     yValues = []
     i = 0
