@@ -14,7 +14,7 @@ plt.scatter(xValues,yValues)
 plt.show()
 """
 plt.figure("Varience")
-os.chdir("library")
+os.chdir("library/Consistency")
 listOfTxtFiles = []
 for file in glob.glob("*.txt"):
 	listOfTxtFiles.append(file)
@@ -23,8 +23,8 @@ print(listOfTxtFiles)
 referenceDict = json.load(open(listOfTxtFiles[0],'r'))
 keys = list(referenceDict.keys())
 
-print referenceDict
-for file in listOfTxtFiles[8:10]:#Every Other Terms
+print(referenceDict)
+for file in listOfTxtFiles[::1]:#Every Other Terms[::2] for others
     xValues = []
     yValues = []
     i = 0
