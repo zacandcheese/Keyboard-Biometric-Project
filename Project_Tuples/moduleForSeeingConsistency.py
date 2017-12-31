@@ -3,6 +3,7 @@ __author__ = 'Zachary Nowak'
 """IMPORTS"""
 import matplotlib.pyplot as plt
 import statistics
+import json
 def seeConsistency(pressCharTimeLine,pressTimeLine,releaseCharTimeLine, releaseTimeLine):
 	plt.figure("Letters")
 	"""FIND NUMBER OF UNIQUE CHARACTERS"""
@@ -40,12 +41,19 @@ def seeConsistency(pressCharTimeLine,pressTimeLine,releaseCharTimeLine, releaseT
 	yList = []
 	xList = range(len(pressTimingList))
 	yList2 = []
+	
+	"""
+	For the storing mean
+	"""
+	dataDict = {}
 	for i in range(len(pressTimingList)):
 		try:
+			dataDict[i] = statistics.median(pressTimingList[i])
 			yList.append(statistics.median(pressTimingList[i]))
 			yList2.append(statistics.mean(pressTimingList[i]))
 			
 		except:
+			dataDict[i] = pressTimingList[i]
 			yList.append(pressTimingList[i])
 			yList2.append(pressTimingList[i])
 	
@@ -53,4 +61,7 @@ def seeConsistency(pressCharTimeLine,pressTimeLine,releaseCharTimeLine, releaseT
 	plt.plot(xList, yList2, label = "mean");	
 	plt.legend()
 	plt.show()
-	
+	person = input('Enter your name: ')
+	#filename = "library/" + person + ".txt" MAIN computer
+	filename = "library/Consistency/" + person + ".txt"#GREEN computer
+	json.dump(dataDict, open(filename, 'w'))
