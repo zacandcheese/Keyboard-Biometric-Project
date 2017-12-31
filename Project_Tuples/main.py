@@ -30,8 +30,9 @@ frequency = 6 #Number the tuple occurs
 tupleLength = 2 #Number the length of the tuple
 infile="1984Chapter1.txt"
 
+#Alternate between these two Passages for Warm Up
 passage = createPassage.BuildSentences(infile,maxLengthOfPassage,frequency,tupleLength)
-#passage = "The quick brown fox jumps over the lazy dog talking back"
+#passage = "the quick brown fox jumps over the lazy dog talking back"
 #passage = "the trophy other with both graph phone phat three philly hath that weather pho"
 
 #tupleList = passageMaker.list()
@@ -52,5 +53,5 @@ dataDict = FPT.create_dict(pressCharTimeLine,pressTimeLine,releaseCharTimeLine,r
 """STORE DATA TO A FILE WITH THAT USER'S NAME"""
 person = input('Enter your name: ')
 #filename = "library/" + person + ".txt" MAIN computer
-filename = "library/Attempts/" + person + ".txt"#GREEN computer
+filename = "library/WarmUp/" + person + ".txt"#GREEN computer
 json.dump(dataDict, open(filename, 'w'))
