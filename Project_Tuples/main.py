@@ -22,13 +22,14 @@ import moduleForFindingTuplesTime as FTT
 import moduleForRecordingTimelines as RT
 import moduleForFindingPressTimes as FPT
 import moduleForSeeingConsistency as SC
+import moduleForSavingTimelines as ST
 import createPassage
 
 """FOLDER IMPORTS"""
 maxLengthOfPassage = 150 #Too Long
 frequency = 6 #Number the tuple occurs
 tupleLength = 2 #Number the length of the tuple
-infile="1984Chapter1.txt"
+infile = "1984Chapter1.txt"
 
 #Alternate between these two Passages for Warm Up
 passage = createPassage.BuildSentences(infile,maxLengthOfPassage,frequency,tupleLength)
@@ -38,7 +39,7 @@ passage = createPassage.BuildSentences(infile,maxLengthOfPassage,frequency,tuple
 #For Testing in differentparts of a sentence
 word = open("Blank TEXT.txt","r")
 sentence = word.readlines()
-passage = sentence[1]
+passage = sentence
 
 #tupleList = passageMaker.list()
 #NOTE TUPLES MUST BE SAME SIZE!!!
@@ -46,6 +47,7 @@ tupleList = createPassage.FindXTuples(passage, 9, 2)#(input string, frequency oc
 
 """TYPE THE PASSAGE AND RECORD THE TIME LINE"""
 pressTimeLine,pressCharTimeLine,releaseTimeLine,releaseCharTimeLine = RT.start_recording(passage)
+ST.saveTimeLine(pressTimeLine,pressCharTimeLine)
 
 """SEE CONSISTENCY"""
 SC.seeConsistency(pressCharTimeLine,pressTimeLine,releaseCharTimeLine, releaseTimeLine)

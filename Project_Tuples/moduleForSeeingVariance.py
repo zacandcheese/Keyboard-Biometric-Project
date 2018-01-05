@@ -17,7 +17,7 @@ plt.show()
 word = open("Blank TEXT.txt","r")
 sentence = word.readlines()
 passage = sentence[1]
-
+print(passage)
 #passage = "even at the best of times it was seldom working, and at present the electric current was cut off during daylight hours"
 plt.figure("Varience")
 os.chdir("library/Sentence")
@@ -26,18 +26,21 @@ for file in glob.glob("*.txt"):
 	listOfTxtFiles.append(file)
 print(listOfTxtFiles)
 
-referenceDict = json.load(open(listOfTxtFiles[3],'r'))
+referenceDict = json.load(open(listOfTxtFiles[0],'r'))
 keys = list(referenceDict.keys())
 
+nonKey = "CKB t@,"
 print(referenceDict)
-for file in listOfTxtFiles[0:5:1]:#Every Other Terms[::2] for others
+
+perfList = listOfTxtFiles[0:30:10]+listOfTxtFiles[1:30:10]+listOfTxtFiles[2:30:10]+listOfTxtFiles[3:30:10]+listOfTxtFiles[4:30:10]
+for file in perfList:#Every Other Terms[::2] for others
     print(file)
     dict = json.load(open(file,'r'))
     xValues = []
     yValues = []
     i = 0
     for key in keys:
-        if not (key == '@'):
+        if not (key in nonKey):
             xValues.append(i)
             yValues.append(dict[key])
             print(i, "is", key, "and the value is", dict[key])
