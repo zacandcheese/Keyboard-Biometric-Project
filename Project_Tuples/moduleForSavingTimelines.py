@@ -12,4 +12,3 @@ def saveTimeLine(pressTime, charTime):
 		outfile2.write(str(char)+ "\n")
 	#with open("file.txt", "w") as output:
 		#output.write(str(values))
-saveTimeLine([1,2,3,4,5],['a','b','c','d','e'])
