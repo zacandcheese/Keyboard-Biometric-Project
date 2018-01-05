@@ -13,4 +13,14 @@ listOfTxtFiles = []
 for file in glob.glob("*.txt"):
 	listOfTxtFiles.append(file)
 print(listOfTxtFiles)
-print(open(listOfTxtFiles[0],"r").readlines()[1])
+#PressList
+pressListFile = open(listOfTxtFiles[0],"r").readlines()
+pressList = []
+for pInt in pressListFile:
+	pressList.append(int(pInt))
+
+#CharList	
+charListFile = open(listOfTxtFiles[1],"r").readlines()
+charList = []
+for pChar in charListFile:
+	charListFile.append((pChar))
