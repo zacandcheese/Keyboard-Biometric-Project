@@ -37,7 +37,7 @@ passage = createPassage.BuildSentences(infile,maxLengthOfPassage,frequency,tuple
 #passage = "the trophy other with both graph phone phat three philly hath that weather pho"
 
 #For Testing in differentparts of a sentence
-word = open("Blank TEXT.txt","r")
+word = open("textGoldenBird.txt","r")
 sentence = word.readlines()
 passage = sentence
 
