@@ -62,7 +62,9 @@ def start_recording(passage):
 				pass
 				
 	
-	reset()	
+	reset()
+	print(pressTimeLine)
+	print(pressCharTimeLine)
 	return(pressTimeLine, pressCharTimeLine, releaseTimeLine, releaseCharTimeLine)
 
 def countlines(passage):

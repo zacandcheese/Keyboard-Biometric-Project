@@ -17,10 +17,16 @@ print(listOfTxtFiles)
 pressListFile = open(listOfTxtFiles[0],"r").readlines()
 pressList = []
 for pInt in pressListFile:
-	pressList.append(int(pInt))
+	pressList.append(int(pInt[0:-9])+int(pInt[11:])*10**-(len(pInt)-13))
 
 #CharList	
 charListFile = open(listOfTxtFiles[1],"r").readlines()
 charList = []
 for pChar in charListFile:
-	charListFile.append((pChar))
+	charList.append((pChar))
+
+a = []
+i = 0
+#for char in charList:
+#	a.append([char, pressList[i]])
+print(pressList)
