@@ -54,25 +54,7 @@ listOfTxtFiles = []
 for file in glob.glob("*.txt"):
 	listOfTxtFiles.append(file)
 print(listOfTxtFiles)
-<<<<<<< HEAD
-#PressList
-pressListFile = open(listOfTxtFiles[0],"r").readlines()
-pressList = []
-for pInt in pressListFile:
-	pressList.append(int(pInt[0:-9])+int(pInt[11:-1])*10**-(len(pInt)-13))
 
-#CharList
-charListFile = open(listOfTxtFiles[1],"r").readlines()
-charList = []
-for pChar in charListFile:
-	charList.append((pChar))
-
-a = []
-i = 0
-#for char in charList:
-#	a.append([char, pressList[i]])
-print(pressList)
-=======
 numFiles = round(len(listOfTxtFiles)/2)
 
 for num in range(numFiles):
@@ -83,4 +65,3 @@ for num in range(numFiles):
 	makeTable(intDict, charDict)
 	print("\n")
 
->>>>>>> c5137a211d25e30b7d2714a291be335b18a138f2
