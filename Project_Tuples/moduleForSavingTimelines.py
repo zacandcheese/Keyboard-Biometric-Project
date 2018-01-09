@@ -1,14 +1,20 @@
 import json
 
-def saveTimeLine(pressTime, charTime):
-	person = input('Enter your name: ')
+def saveTimeLine(pressTime, charTime, person):
+	#person = input('Enter your name: ')
 	filename = "library/Timelines/" + person + "A.txt"#GREEN computer
 	filename2 = "library/Timelines/" + person + "B.txt"#GREEN computer
 	outfile = open(filename, 'w')
 	outfile2 = open(filename2, 'w')
-	for press in pressTime:
-		outfile.write(str(press)+"\n")
+	Dict1 = {}
+	i = 0
+	for num in pressTime:
+		Dict1[i] = num
+		i += 1
+	Dict2 = {}
+	i = 0
 	for char in charTime:
-		outfile2.write(str(char)+ "\n")
-	#with open("file.txt", "w") as output:
-		#output.write(str(values))
+		Dict2[i] = char
+		i += 1
+	json.dump(Dict1, open(filename, 'w'))
+	json.dump(Dict2, open(filename2, 'w'))

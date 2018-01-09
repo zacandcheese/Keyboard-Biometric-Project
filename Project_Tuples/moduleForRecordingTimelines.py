@@ -14,10 +14,11 @@ stateDict = listOfAllKeys.stateDict
 nameDict = listOfAllKeys.nameDict
 
 def start_recording(passage):
+	name = input("What is your name: ")
 	passageTyped = ""
 	end = True
 	counter = 0
-	print(passage[counter])
+	print(passage[counter].lower())
 	numLines = countlines(passage)-1 #numLines is 1 over because the first element is 0
 	
 	pressTimeLine = []
@@ -49,23 +50,24 @@ def start_recording(passage):
 						print(passage[counter].lower())
 						print(passageTyped.lower())
 						stateDict[char] = 0
+						
 					if i == 13:
 						if counter != numLines:
 							counter +=1
-							reset()#ADDED THIS
+							os.system('cls')
 							passageTyped = ""
-							print(passage[counter])
+							print(passage[counter].lower())
 						else:
 							end = False
 							
 			except KeyError:
 				pass
 				
-	
-	reset()
+	for i in range(round(numLines/2)):
+		reset()
 	print(pressTimeLine)
 	print(pressCharTimeLine)
-	return(pressTimeLine, pressCharTimeLine, releaseTimeLine, releaseCharTimeLine)
+	return(pressTimeLine, pressCharTimeLine, releaseTimeLine, releaseCharTimeLine, name)
 
 def countlines(passage):
 	i = 0

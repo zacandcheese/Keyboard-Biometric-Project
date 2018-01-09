@@ -46,8 +46,8 @@ passage = sentence
 tupleList = createPassage.FindXTuples(passage, 9, 2)#(input string, frequency occurs, length of tuple)
 
 """TYPE THE PASSAGE AND RECORD THE TIME LINE"""
-pressTimeLine,pressCharTimeLine,releaseTimeLine,releaseCharTimeLine = RT.start_recording(passage)
-ST.saveTimeLine(pressTimeLine,pressCharTimeLine)
+pressTimeLine,pressCharTimeLine,releaseTimeLine,releaseCharTimeLine,name = RT.start_recording(passage)
+ST.saveTimeLine(pressTimeLine,pressCharTimeLine,name)
 
 """SEE CONSISTENCY"""
 SC.seeConsistency(pressCharTimeLine,pressTimeLine,releaseCharTimeLine, releaseTimeLine)
