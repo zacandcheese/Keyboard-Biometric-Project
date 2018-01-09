@@ -41,8 +41,11 @@ def makeTable(intDict, charDict):
 								pTuple += totalSentence[(m+n)].lower()
 							if (pTuple == tuple):
 								allTimes.append(intDict[str(m+len(tuple)-1)]-intDict[str(m)])
-						if len(allTimes)>=2:
-							print(tuple,allTimes)
+						#ADD IT TO FILE
+						if len(allTimes)>=3:
+							print(tuple,len(allTimes),statistics.mean(allTimes),statistics.median(allTimes), statistics.variance(allTimes))
+							dummyFile = open(filename, 'a')
+							dummyFile.write(str(tuple)+","+str(len(allTimes))+","+str(statistics.mean(allTimes))+","+str(statistics.median(allTimes))+","+str(statistics.variance(allTimes))+"\n")
 					#The entire sentence of what they wrote
 					#list of every appearances, time for each
 	

@@ -20,7 +20,7 @@ def seeConsistency(pressCharTimeLine,pressTimeLine,releaseCharTimeLine, releaseT
 		#that from the release time and that gives the total press time.
 		char = pressCharTimeLine[i]
 		j = 0
-		while(True):
+		while(char != '\n'):#FIXME
 			j = releaseCharTimeLine.index(char,j)
 			sum = releaseTimeLine[j]-pressTimeLine[i]
 			if (sum>0):
