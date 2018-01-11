@@ -61,5 +61,3 @@ for num in range(numFiles):
 	#print(charDict)
 	makeTable(intDict, charDict)
 	print("\n")
-
->>>>>>> c5137a211d25e30b7d2714a291be335b18a138f2
