@@ -27,27 +27,32 @@ def makeTable(intDict, charDict):
 	person = input("Enter Name: ")
 	filename = "Summary/" + person + ".txt"#GREEN computer
 	
+	listOfTuples = []
 	#cycle all letters
 	for i in ([""]+list(string.ascii_lowercase)):
 		for j in ([""]+list(string.ascii_lowercase)):
 			for k in (list(string.ascii_lowercase)):
 				for l in (list(string.ascii_lowercase)):
 					tuple = i+j+k+l
-					if tuple in totalSentence.lower():
-						allTimes = []
-						for m in range(len(totalSentence)-len(tuple)):
-							pTuple = ""
-							for n in range(len(tuple)):
-								pTuple += totalSentence[(m+n)].lower()
-							if (pTuple == tuple):
-								allTimes.append(intDict[str(m+len(tuple)-1)]-intDict[str(m)])
-						#ADD IT TO FILE
-						if len(allTimes)>=3:
-							print(tuple,len(allTimes),statistics.mean(allTimes),statistics.median(allTimes), statistics.variance(allTimes))
-							dummyFile = open(filename, 'a')
-							dummyFile.write(str(tuple)+","+str(len(allTimes))+","+str(statistics.mean(allTimes))+","+str(statistics.median(allTimes))+","+str(statistics.variance(allTimes))+"\n")
-					#The entire sentence of what they wrote
-					#list of every appearances, time for each
+					
+					if(tuple not in listOfTuples):
+						
+						if tuple in totalSentence.lower():
+							allTimes = []
+							for m in range(len(totalSentence)-len(tuple)):
+								pTuple = ""
+								for n in range(len(tuple)):
+									pTuple += totalSentence[(m+n)].lower()
+								if (pTuple == tuple):
+									allTimes.append(intDict[str(m+len(tuple)-1)]-intDict[str(m)])
+							#ADD IT TO FILE
+							if len(allTimes)>=3:
+								listOfTuples.append(tuple)
+								print(tuple,len(allTimes),statistics.mean(allTimes),statistics.median(allTimes), statistics.variance(allTimes))
+								dummyFile = open(filename, 'a')
+								dummyFile.write(str(tuple)+","+str(len(allTimes))+","+str(statistics.mean(allTimes))+","+str(statistics.median(allTimes))+","+str(statistics.variance(allTimes))+"\n")
+						#The entire sentence of what they wrote
+						#list of every appearances, time for each
 	
 
 listOfTxtFiles = []
