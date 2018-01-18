@@ -18,6 +18,7 @@ def newData(list):
    #   print(line.split(","))
    #print(megaList)
    
+   fileName = "Analyze/" + "new data" + ".txt"
    tuplesSeen = []
    for line in megaList:
       tuple = line.split(",")[0]#tuple
@@ -28,19 +29,20 @@ def newData(list):
          for line in megaList:#searches
             tuple2 = line.split(",")[0]
             if(tuple == tuple2):
-               dummyList.append(line.split(",")[3])
+               dummyList.append(float(line.split(",")[3]))
                
          if(len(dummyList)>=2):
             print(tuple, statistics.variance(dummyList))
-      
+            dummyFile = open(fileName, 'a')
+            dummyFile.write((str(tuple))+","+str(statistics.variance(dummyList))+"\n")
    
       
-   """
-   find the tuple for all .txt files
-   if there is multiple of each, then
-   compare each of the text files 
-   print the tuple and variance
-   """
+"""
+find the tuple for all .txt files
+if there is multiple of each, then
+compare each of the text files 
+print the tuple and variance
+"""
    
 newData(listOfTxtFiles)
 
