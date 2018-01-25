@@ -1,7 +1,7 @@
 __version__ = '1.0'
 __author__ = 'Zachary Nowak'
 """STANDARD LIBRARY IMPORTS"""
-from tkinter import *
+from Tkinter import *
 import time
 
 """THIRD PARTY LIBRARY IMPORTS"""
@@ -17,26 +17,25 @@ pressTimeLine = []
 pressCharTimeLine = []
 releaseTimeLine = []
 releaseCharTimeLine = []
-
 i = 0
-name = input("What is your name: ")
+name = raw_input("What is your name: ")
 def start_recording():
 	#METHODS TO DEAL WITH KEYBOARD EVENTS
 	def keydown(e):
+		print(e.keycode)
 		global i
 		pressTimeLine.append(time.time())
-		if(e.char == '\x08'):#Fixes Backspace
+		if(e.char == '\x08' or e.keycode == 3342463):#Fixes Backspace
 			pressCharTimeLine.append("@")
-		elif(e.char == '\r'):#Fixes Backspace
+		elif(e.char == '\r' or e.keycode == 2359309):#Fixes Enter
 			pressCharTimeLine.append("\n")
 		elif(e.char == '\b'):#Fixes Backspace
 			pressCharTimeLine.append("@")
-		elif(e.char == '\r'):
-			None
 		else:
 			pressCharTimeLine.append(e.char)
+      
 	
-		if(e.keycode == 13):
+		if(e.keycode == 13 or e.keycode == 2359309):
 			if(i == len(passage)-1):
 				text.destroy()
 
