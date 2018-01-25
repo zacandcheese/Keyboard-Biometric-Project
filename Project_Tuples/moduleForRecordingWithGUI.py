@@ -1,8 +1,9 @@
 __version__ = '1.0'
 __author__ = 'Zachary Nowak'
 """STANDARD LIBRARY IMPORTS"""
-from Tkinter import *
+from tkinter import *
 import time
+import platform
 
 """THIRD PARTY LIBRARY IMPORTS"""
 
@@ -18,15 +19,13 @@ pressCharTimeLine = []
 releaseTimeLine = []
 releaseCharTimeLine = []
 i = 0
-name = raw_input("What is your name: ")
+
+#name = raw_input("What is your name: ")for a Mac
+if(platform.system() == "Windows"):
+	name = input("What is your name: ")
 def start_recording():
 	#METHODS TO DEAL WITH KEYBOARD EVENTS
 	def keydown(e):
-<<<<<<< HEAD
-		print(e)
-=======
-		print(e.keycode)
->>>>>>> 594b1203fd5a367e5c3693b4868d611b9ab435af
 		global i
 		pressTimeLine.append(time.time())
 		if(e.char == '\x08' or e.keycode == 3342463):#Fixes Backspace
