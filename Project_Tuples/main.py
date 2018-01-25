@@ -19,7 +19,7 @@ import json
 
 """LOCAL LIBRARY IMPORTS"""
 import moduleForFindingTuplesTime as FTT
-import moduleForRecordingTimelines as RT
+#import moduleForRecordingTimelines as RT
 import moduleForFindingPressTimes as FPT
 import moduleForSeeingConsistency as SC
 import moduleForSavingTimelines as ST
@@ -60,7 +60,7 @@ dataDict = FTT.create_dict(tupleList, pressCharTimeLine,pressTimeLine,dataDict)
 dataDict = FPT.create_dict(pressCharTimeLine,pressTimeLine,releaseCharTimeLine,releaseTimeLine,dataDict)
 
 """STORE DATA TO A FILE WITH THAT USER'S NAME"""
-person = input('Enter your name: ')
+person = raw_input('Enter your name: ')
 #filename = "library/" + person + ".txt" MAIN computer
 filename = "library/Sentence/" + person + ".txt"#GREEN computer
 json.dump(dataDict, open(filename, 'w'))
