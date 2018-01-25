@@ -7,6 +7,7 @@ import os
 import json
 import statistics
 import string
+import platform
 
 #os.chdir("/Users/zacan/OneDrive/Documents/GitHub/Keyboard-Biometric-Testing/Project_Tuples/library")#Change zacan with Haley for GREEN
 os.chdir("library/Timelines")#Change Haley with zacan for MAIN
@@ -24,7 +25,10 @@ def makeTable(intDict, charDict):
 		
 	print(totalSentence)
 	#File
-	person = input("Enter Name: ")
+	if(platform.system() == "Darwin"):
+		person = raw_input("Enter Name: ")
+	elif(platform.system() == "Windows"):
+		person = input("Enter Name:")
 	filename = "Summary/" + person + ".txt"#GREEN computer
 	
 	listOfTuples = []
@@ -58,11 +62,14 @@ def makeTable(intDict, charDict):
 listOfTxtFiles = []
 for file in glob.glob("*.txt"):
 	listOfTxtFiles.append(file)
+
+
+listOfTxtFiles = sorted(listOfTxtFiles, key=str.lower)
 print(listOfTxtFiles)
 
 numFiles = round(len(listOfTxtFiles)/2)
 
-for num in range(numFiles):
+for num in range(int(numFiles)):
 	intDict = json.load(open(listOfTxtFiles[num*2],'r'))
 	charDict = json.load(open(listOfTxtFiles[num*2+1],'r'))
 	#print(intDict)
