@@ -23,6 +23,7 @@ name = input("What is your name: ")
 def start_recording():
 	#METHODS TO DEAL WITH KEYBOARD EVENTS
 	def keydown(e):
+		print(e)
 		global i
 		pressTimeLine.append(time.time())
 		if(e.char == '\x08'):#Fixes Backspace
