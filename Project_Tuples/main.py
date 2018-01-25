@@ -16,6 +16,7 @@ __version__ = '1.0'
 __author__ = 'Zachary Nowak'
 """STANDARD LIBRARY IMPORTS"""
 import json
+import platform
 
 """LOCAL LIBRARY IMPORTS"""
 import moduleForFindingTuplesTime as FTT
@@ -60,7 +61,10 @@ dataDict = FTT.create_dict(tupleList, pressCharTimeLine,pressTimeLine,dataDict)
 dataDict = FPT.create_dict(pressCharTimeLine,pressTimeLine,releaseCharTimeLine,releaseTimeLine,dataDict)
 
 """STORE DATA TO A FILE WITH THAT USER'S NAME"""
-person = raw_input('Enter your name: ')
+if(platform.system() == "Darwin"):
+   person = raw_input("What is your name: ")#for a Mac
+if(platform.system() == "Windows"):
+	person = input("What is your name: ")
 #filename = "library/" + person + ".txt" MAIN computer
 filename = "library/Sentence/" + person + ".txt"#GREEN computer
 json.dump(dataDict, open(filename, 'w'))

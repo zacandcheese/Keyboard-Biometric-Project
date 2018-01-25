@@ -1,9 +1,14 @@
 __version__ = '1.0'
 __author__ = 'Zachary Nowak'
 """STANDARD LIBRARY IMPORTS"""
-from tkinter import *
-import time
 import platform
+if(platform.system() == "Darwin"):
+   from Tkinter import *
+if(platform.system() == "Windows"):
+   from tkinter import *
+   
+import time
+
 
 """THIRD PARTY LIBRARY IMPORTS"""
 
@@ -20,9 +25,11 @@ releaseTimeLine = []
 releaseCharTimeLine = []
 i = 0
 
-#name = raw_input("What is your name: ")for a Mac
+if(platform.system() == "Darwin"):
+   name = raw_input("What is your name: ")#for a Mac
 if(platform.system() == "Windows"):
 	name = input("What is your name: ")
+   
 def start_recording():
 	#METHODS TO DEAL WITH KEYBOARD EVENTS
 	def keydown(e):
