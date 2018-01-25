@@ -23,6 +23,7 @@ import moduleForRecordingTimelines as RT
 import moduleForFindingPressTimes as FPT
 import moduleForSeeingConsistency as SC
 import moduleForSavingTimelines as ST
+import moduleForRecordingWithGUI as GUI
 import createPassage
 
 """FOLDER IMPORTS"""
@@ -46,7 +47,8 @@ passage = sentence
 tupleList = createPassage.FindXTuples(passage, 9, 2)#(input string, frequency occurs, length of tuple)
 
 """TYPE THE PASSAGE AND RECORD THE TIME LINE"""
-pressTimeLine,pressCharTimeLine,releaseTimeLine,releaseCharTimeLine,name = RT.start_recording(passage)
+#pressTimeLine,pressCharTimeLine,releaseTimeLine,releaseCharTimeLine,name = RT.start_recording(passage)
+pressTimeLine,pressCharTimeLine,releaseTimeLine,releaseCharTimeLine,name = GUI.start_recording()
 ST.saveTimeLine(pressTimeLine,pressCharTimeLine,name)
 
 """SEE CONSISTENCY"""
