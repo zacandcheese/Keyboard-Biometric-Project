@@ -26,15 +26,17 @@ def newData(list):
       if tuple not in tuplesSeen:
          tuplesSeen.append(tuple)
          dummyList = []
+		 dummyList2 = []
          for line in megaList:#searches
             tuple2 = line.split(",")[0]
             if(tuple == tuple2):
-               dummyList.append(float(line.split(",")[3]))
+               dummyList.append(float(line.split(",")[3]))#MEDIAN
+			   dummyList2.append(float(line.split(",")[4])#VARIANCE
                
-         if(len(dummyList)>=2):
+         if(len(dummyList)>=2 and len(dummyList2)>=2):
             print(tuple, statistics.variance(dummyList))
             dummyFile = open(fileName, 'a')
-            dummyFile.write((str(tuple))+","+str(statistics.variance(dummyList))+"\n")
+            dummyFile.write((str(tuple))+","+str(statistics.variance(dummyList))+","+ str(statistics.variance(dummyList2)+"\n")
    
       
 """
