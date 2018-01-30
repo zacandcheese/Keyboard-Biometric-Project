@@ -37,7 +37,7 @@ def newData(list):
 			if(len(dummyList)>=3 and len(dummyList2)>=3):
 				print(tuple, statistics.variance(dummyList),statistics.variance(dummyList2))
 				dummyFile = open(fileName, 'a')
-				dummyFile.write((str(tuple))+","+str(statistics.variance(dummyList))+","+str(statistics.variance(dummyList2))+"\n")
+				dummyFile.write((str(tuple))+","+str(statistics.variance(dummyList))+","+str(statistics.mean(dummyList2))+"\n")
 
    
       
