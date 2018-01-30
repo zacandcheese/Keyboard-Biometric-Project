@@ -10,6 +10,7 @@ for file in glob.glob("*.txt"):
 print(listOfTxtFiles)
 
 def newData(list):
+   minorList = []
    megaList = []
    for file in list:
       for line in open(file,"r").readlines():#open the file, read all lines, add each line to the megalist
@@ -18,7 +19,7 @@ def newData(list):
    #   print(line.split(","))
    #print(megaList)
    
-   fileName = "Analyze/" + "new data" + ".txt"
+   fileName = "Analyze/" + "Mean and Variance data" + ".txt"
    tuplesSeen = []
    for line in megaList:
       tuple = line.split(",")[0]#tuple
@@ -33,10 +34,17 @@ def newData(list):
                dummyList.append(float(line.split(",")[3]))#MEDIAN
 			   dummyList2.append(float(line.split(",")[4])#VARIANCE
                
+<<<<<<< HEAD
          if(len(dummyList)>=2 and len(dummyList2)>=2):
             print(tuple, statistics.variance(dummyList))
             dummyFile = open(fileName, 'a')
             dummyFile.write((str(tuple))+","+str(statistics.variance(dummyList))+","+ str(statistics.variance(dummyList2)+"\n")
+=======
+         if(len(dummyList)>=2):
+            #print(tuple, statistics.mean(dummyList))
+            dummyFile = open(fileName, 'a')
+            dummyFile.write((str(tuple))+","+str(statistics.mean(dummyList))+","+str(statistics.variance(dummyList))+"\n")
+>>>>>>> 3691ebf61c6b9e4c318d4468280d7257b6f8eaaa
    
       
 """
