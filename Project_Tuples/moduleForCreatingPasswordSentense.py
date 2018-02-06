@@ -7,6 +7,7 @@ import random
 from nltk.corpus import brown
 
 tupleList = ["ca", "that", "th"]
+
 def Noun(NN):
 	return NN[random.randint(0, len(NN)-1)]
 def Verb(VB):
