@@ -25,6 +25,7 @@ import moduleForFindingPressTimes as FPT
 import moduleForSeeingConsistency as SC
 import moduleForSavingTimelines as ST
 import moduleForRecordingWithGUI as GUI
+import moduleForCreatingPasswordSentense as PS
 import createPassage
 
 """FOLDER IMPORTS"""
@@ -45,12 +46,32 @@ passage = sentence
 
 #tupleList = passageMaker.list()
 #NOTE TUPLES MUST BE SAME SIZE!!!
-tupleList = createPassage.FindXTuples(passage, 9, 2)#(input string, frequency occurs, length of tuple)
+tupleList = createPassage.FindXTuples(passage, 9, 2)#(input string, frequency occurs, length of tuple)ACCOUNT FOR EVERYBODY (MATTS SPREAAD SHEET)
+tupleList = ["ca","tch","nig"]   
+
+if(platform.system() == "Darwin"):
+   name = raw_input("What is your name: ")#for a Mac
+   location = raw_input("What is the location: ")
+   
+if(platform.system() == "Windows"):
+	name = input("What is your name: ")
+	location = input("What is your location: ")
+
+if(location != ""):
+	location = "Applyling/"
+	passage = (PS.makeSentence(tupleList)).split(".")
+	print(passage)
+else:
+	word = open("textGoldenBird.txt","r")
+	passage = word.readlines()
+#CHOOSING PASSAGE
+
+
 
 """TYPE THE PASSAGE AND RECORD THE TIME LINE"""
 #pressTimeLine,pressCharTimeLine,releaseTimeLine,releaseCharTimeLine,name = RT.start_recording(passage)
-pressTimeLine,pressCharTimeLine,releaseTimeLine,releaseCharTimeLine,name = GUI.start_recording()
-ST.saveTimeLine(pressTimeLine,pressCharTimeLine,name)
+pressTimeLine,pressCharTimeLine,releaseTimeLine,releaseCharTimeLine = GUI.start_recording(passage)
+ST.saveTimeLine(pressTimeLine,pressCharTimeLine,name,location)
 
 """SEE CONSISTENCY"""
 SC.seeConsistency(pressCharTimeLine,pressTimeLine,releaseCharTimeLine, releaseTimeLine)
@@ -61,10 +82,7 @@ dataDict = FTT.create_dict(tupleList, pressCharTimeLine,pressTimeLine,dataDict)
 dataDict = FPT.create_dict(pressCharTimeLine,pressTimeLine,releaseCharTimeLine,releaseTimeLine,dataDict)
 
 """STORE DATA TO A FILE WITH THAT USER'S NAME"""
-if(platform.system() == "Darwin"):
-   person = raw_input("What is your name: ")#for a Mac
-if(platform.system() == "Windows"):
-	person = input("What is your name: ")
+
 #filename = "library/" + person + ".txt" MAIN computer
-filename = "library/Sentence/" + person + ".txt"#GREEN computer
+filename = "library/"+location + person + ".txt"#GREEN computer
 json.dump(dataDict, open(filename, 'w'))

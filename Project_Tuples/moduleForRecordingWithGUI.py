@@ -15,8 +15,7 @@ import time
 """LOCAL LIBRARY IMPORTS"""
 
 """LOCAL LIBRARY VARIABLES"""
-word = open("textGoldenBird.txt","r")
-passage = word.readlines()
+
 
 
 pressTimeLine = []
@@ -25,12 +24,8 @@ releaseTimeLine = []
 releaseCharTimeLine = []
 i = 0
 
-if(platform.system() == "Darwin"):
-   name = raw_input("What is your name: ")#for a Mac
-if(platform.system() == "Windows"):
-	name = input("What is your name: ")
-   
-def start_recording():
+
+def start_recording(passage):
 	#METHODS TO DEAL WITH KEYBOARD EVENTS
 	def keydown(e):
 		global i
@@ -51,8 +46,10 @@ def start_recording():
 
 			else:
 				text.delete('1.0', END)
-				i += 2
-				text.insert(INSERT, passage[i].lower())
+				i += 1 #MAKES IT EVERY OTHER WITH TWO
+				if(passage[i]=='\n'):
+					i+=1
+				text.insert(INSERT, (passage[i].lower()+".\n"))
 
 	def keyrelease(e):
 		releaseTimeLine.append(time.time())
@@ -87,4 +84,4 @@ def start_recording():
 
 	root.mainloop()
 
-	return(pressTimeLine,pressCharTimeLine,releaseTimeLine,releaseCharTimeLine, name)
+	return(pressTimeLine,pressCharTimeLine,releaseTimeLine,releaseCharTimeLine)

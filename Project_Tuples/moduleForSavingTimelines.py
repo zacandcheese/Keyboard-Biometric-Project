@@ -1,9 +1,15 @@
 import json
-
-def saveTimeLine(pressTime, charTime, person):
-	#person = input('Enter your name: ')
-	filename = "library/Timelines/" + person + "A.txt"#GREEN computer
-	filename2 = "library/Timelines/" + person + "B.txt"#GREEN computer
+import platform
+import os
+def saveTimeLine(pressTime, charTime, person,location):
+	
+	if(location != ""):
+		location = "Applying/"
+	
+	os.chdir("library/")
+	
+	filename = "Timelines/" +location+ person + "A.txt"#GREEN computer
+	filename2 = "Timelines/" +location+ person + "B.txt"#GREEN computer
 	outfile = open(filename, 'w')
 	outfile2 = open(filename2, 'w')
 	Dict1 = {}

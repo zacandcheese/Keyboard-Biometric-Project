@@ -6,7 +6,8 @@ import random
 
 from nltk.corpus import brown
 
-tupleList = ["ca", "that", "th"]
+#tupleList = ["that","tch","tc","nig","ight","one","feat","ery","ca","atch","hat","be","then","very","king"]
+tupleList = ["ca","tch","nig"]
 
 def Noun(NN):
 	return NN[random.randint(0, len(NN)-1)]
@@ -33,10 +34,10 @@ def makeSentence(tupleList):
 			if((tuple.lower() in word[0].lower()) and (word[1] == "NNP") and (word[0].lower() not in NNP)):
 				NNP.append(word[0])	
 				
-	print("A vacation is when you take a trip to some " +Adjective(ADJ)+" place "+
+	return("A vacation is when you take a trip to some " +Adjective(ADJ)+" place "+
 	"with your "+ Adjective(ADJ)+" family. Usually you go to some place "+
 	"that is near a/an "+ Noun(NN) + " or up on a/an "+ Noun(NN)+"."+ 
 	"A good vacation place is one where you can ride "+ Noun(NN)+"s"+
-	"or play "+ Noun(NN)+" or go hunting for " +Noun(NN)+"." )
+	"or play "+ Noun(NN)+" or go hunting for " +Noun(NN)+".")
 	
 makeSentence(tupleList)
