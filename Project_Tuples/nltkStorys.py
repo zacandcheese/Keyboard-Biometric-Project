@@ -18,7 +18,30 @@ for file in glob.glob("*.txt"):
 print(listOfTxtFiles)
 
 for name in listOfTxtFiles:
-   file = open(name, "r")
-   for line in file.readlines():
-      print(line)
+   tupleList = ["ight"] 
+   with open(name) as file:
+   
+   
+      """
+      with open(name) as newFile:
+       for line in newFile:
+          print(line)
+      """
+      oldLine = ""
+      for newLine in file:
+         #line = cat jumps do
+         line = oldLine + newLine
+         for tuple in tupleList:
+             if tuple in line.lower():
+                string = line.lower()
+                substring = tuple
+             
+                count = string.count(substring)
+             
+                if(count>3):
+                  print(line)
+                  print("\n")
+         oldLine = newLine
+                 
+      print(name)  
 
