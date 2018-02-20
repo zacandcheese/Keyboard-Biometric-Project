@@ -1,5 +1,6 @@
 import os
 import glob
+import random
 
 os.chdir('..')
 print(os.getcwd())
@@ -17,16 +18,10 @@ for file in glob.glob("*.txt"):
 	listOfTxtFiles.append(file)
 print(listOfTxtFiles)
 
+bigList = []
 for name in listOfTxtFiles:
    tupleList = ["ight"] 
    with open(name) as file:
-   
-   
-      """
-      with open(name) as newFile:
-       for line in newFile:
-          print(line)
-      """
       oldLine = ""
       for newLine in file:
          #line = cat jumps do
@@ -39,9 +34,13 @@ for name in listOfTxtFiles:
                 count = string.count(substring)
              
                 if(count>3):
-                  print(line)
-                  print("\n")
+                   bigList.append(line)
          oldLine = newLine
-                 
+         
+      
+         
+         
       print(name)  
-
+print("\n")
+dataList = bigList
+print (random.choice(dataList))
