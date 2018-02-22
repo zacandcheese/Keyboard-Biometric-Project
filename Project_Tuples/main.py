@@ -26,6 +26,7 @@ import moduleForSeeingConsistency as SC
 import moduleForSavingTimelines as ST
 import moduleForRecordingWithGUI as GUI
 import moduleForCreatingPasswordSentense as PS
+import moduleForDeconstructingTimelines as DT
 import createPassage
 
 """FOLDER IMPORTS"""
@@ -47,7 +48,7 @@ passage = sentence
 #tupleList = passageMaker.list()
 #NOTE TUPLES MUST BE SAME SIZE!!!
 tupleList = createPassage.FindXTuples(passage, 9, 2)#(input string, frequency occurs, length of tuple)ACCOUNT FOR EVERYBODY (MATTS SPREAAD SHEET)
-tupleList = ["ca","tch","nig"]   
+tupleList = ["tch"]   
 
 if(platform.system() == "Darwin"):
    name = raw_input("What is your name: ")#for a Mac
@@ -72,17 +73,18 @@ else:
 #pressTimeLine,pressCharTimeLine,releaseTimeLine,releaseCharTimeLine,name = RT.start_recording(passage)
 pressTimeLine,pressCharTimeLine,releaseTimeLine,releaseCharTimeLine = GUI.start_recording(passage)
 ST.saveTimeLine(pressTimeLine,pressCharTimeLine,name,location)
-
-"""SEE CONSISTENCY"""
+DT.userSummary(name)
+"""
+""SEE CONSISTENCY""
 SC.seeConsistency(pressCharTimeLine,pressTimeLine,releaseCharTimeLine, releaseTimeLine)
 
-"""COLLECT DATA FROM THE TIMELINE"""
+""COLLECT DATA FROM THE TIMELINE""
 dataDict = {}
 dataDict = FTT.create_dict(tupleList, pressCharTimeLine,pressTimeLine,dataDict)
 dataDict = FPT.create_dict(pressCharTimeLine,pressTimeLine,releaseCharTimeLine,releaseTimeLine,dataDict)
 
-"""STORE DATA TO A FILE WITH THAT USER'S NAME"""
+""STORE DATA TO A FILE WITH THAT USER'S NAME""
 
 #filename = "library/" + person + ".txt" MAIN computer
 filename = "library/"+location + person + ".txt"#GREEN computer
-json.dump(dataDict, open(filename, 'w'))
+json.dump(dataDict, open(filename, 'w'))"""

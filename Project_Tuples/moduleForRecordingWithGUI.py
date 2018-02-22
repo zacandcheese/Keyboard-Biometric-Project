@@ -71,7 +71,7 @@ def start_recording(passage):
 	root = Tk()
 	text = Text(root)
 	text.config(font=("Times", 20))
-	text.insert(INSERT, passage[i])
+	text.insert(INSERT, passage[i].lower()+".\n")
 	text.bind("<KeyPress>", keydown)
 	text.bind("<KeyRelease>",keyrelease)
 	text.pack()

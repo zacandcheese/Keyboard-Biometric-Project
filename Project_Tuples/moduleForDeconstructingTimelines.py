@@ -13,7 +13,7 @@ import platform
 os.chdir("library/Timelines")#Change Haley with zacan for MAIN
 
 
-def makeTable(intDict, charDict):
+def makeTable(intDict, charDict, location):
 	"""
 	list of all tuples found in what the person typed
 	# of appearances, median, variance
@@ -29,7 +29,7 @@ def makeTable(intDict, charDict):
 		person = raw_input("Enter Name: ")
 	elif(platform.system() == "Windows"):
 		person = input("Enter Name:")
-	filename = "Summary/" + person + ".txt"#GREEN computer
+	filename = location + person + ".txt"#GREEN computer
 	
 	listOfTuples = []
 	#cycle all letters
@@ -58,22 +58,48 @@ def makeTable(intDict, charDict):
 						#The entire sentence of what they wrote
 						#list of every appearances, time for each
 	
+def allTraining():
+	listOfTxtFiles = []
+	for file in glob.glob("*.txt"):
+		listOfTxtFiles.append(file)
 
-listOfTxtFiles = []
-for file in glob.glob("*.txt"):
-	listOfTxtFiles.append(file)
+
+	listOfTxtFiles = sorted(listOfTxtFiles, key=str.lower)
+	print(listOfTxtFiles)
+
+	numFiles = round(len(listOfTxtFiles)/2)
+
+	for num in range(int(numFiles)):
+		intDict = json.load(open(listOfTxtFiles[num*2],'r'))
+		charDict = json.load(open(listOfTxtFiles[num*2+1],'r'))
+		#print(intDict)
+		#print(charDict)
+		makeTable(intDict, charDict,"Summary/")
+		print("\n")
+
+def userSummary(fileName):
+	os.chdir("Applying/")
+	listOfTxtFiles = []
+	for file in glob.glob("*.txt"):
+		listOfTxtFiles.append(file)
 
 
-listOfTxtFiles = sorted(listOfTxtFiles, key=str.lower)
-print(listOfTxtFiles)
+	listOfTxtFiles = sorted(listOfTxtFiles, key=str.lower)
+	print(listOfTxtFiles)
+	newListOfTxtFiles = []
+	
+	for file in listOfTxtFiles:
+		if(fileName in file):
+			newListOfTxtFiles.append(file)
+	
+	numFiles = round(len(newListOfTxtFiles)/2)
+	print(newListOfTxtFiles)
+	for num in range(int(numFiles)):
+		intDict = json.load(open(newListOfTxtFiles[num*2],'r'))
+		charDict = json.load(open(newListOfTxtFiles[num*2+1],'r'))
+		#print(intDict)
+		#print(charDict)
+		makeTable(intDict, charDict,"Summary/")
+		print("\n")
 
-numFiles = round(len(listOfTxtFiles)/2)
-
-for num in range(int(numFiles)):
-	intDict = json.load(open(listOfTxtFiles[num*2],'r'))
-	charDict = json.load(open(listOfTxtFiles[num*2+1],'r'))
-	#print(intDict)
-	#print(charDict)
-	makeTable(intDict, charDict)
-	print("\n")
-
+userSummary(fileName)
